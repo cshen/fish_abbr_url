@@ -40,8 +40,9 @@ See https://fishshell.com/docs/3.4/language.html#featureflags for details
 [avdl.sh](https://github.com/he2a/av-dl), downoad the script and rename it as `avdl.sh'
        
 [axs](https://github.com/cshen/arxiv_download) 
-            ```sh
-            pipx install git+https://github.com/cshen/arxiv_download
+
+```sh
+    pipx install git+https://github.com/cshen/arxiv_download
 ```
 
 ## Optional:
