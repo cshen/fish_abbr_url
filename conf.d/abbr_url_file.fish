@@ -1,7 +1,7 @@
 
 # it's WSL
 uname --all | grep -q WSL && set OPEN_CMD explorer.exe
-type -q pdflatex-quiet && set PDFCMD pdflatex-quiet || set PDFCMD pdflatex
+
 
 # requirements:
 #       gum (https://github.com/charmbracelet/gum)
@@ -54,6 +54,9 @@ function _compile_latex
     #
     # For input like "xxxx", we need to remove the double quotes
     #
+    set PDFCMD pdflatex
+    type -q pdflatex-quiet && set PDFCMD pdflatex-quiet 
+
     set -l first_char $( echo $argv | string trim | string sub -s 1 -e 1 )
     set -l last_char $( echo $argv | string trim | string sub -s -1 )
     if [ $first_char = "\"" -a $last_char = "\"" ]
@@ -73,7 +76,7 @@ function _compile_latex
 
     # echo "# Current dir: " $(pwd)
     echo "for i in 1 2"
-    echo "    $PDFCMD" "$TEXFILE"
+    echo "    $PDFCMD $TEXFILE"
     echo "    bibtex" "$AUXFILE"
     echo end
     echo ""
@@ -88,6 +91,9 @@ function mypdflatex
     set -l TEXFILE $(path basename  "$F"  )
     set -l AUXFILE $( basename "$TEXFILE" .tex ).aux
     set -l PDFFILE $( basename "$TEXFILE" .tex ).pdf
+
+    set PDFCMD pdflatex
+    type -q pdflatex-quiet && set PDFCMD pdflatex-quiet 
 
     cd $MDIR
     pwd
