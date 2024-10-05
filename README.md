@@ -1,9 +1,15 @@
 # fish_abbr_url
 
 Fish shell plugin to handle terminal input:
-    `https://... or file', e.g.,
-type `final.tex'  it will expand into `pdflatex final.tex; bibtex final.aux'
+
+    ``https://... or file'', e.g.,
+
+type ``final.tex''  it will expand into:
+ 
+``pdflatex final.tex; bibtex final.aux''
+
 type an arxiv or youtube URL link, it will expand into commands to download the arxiv paper/video
+
 
 Note: *Only tested on WSL with Ubuntu; fish, version 3.7.1*
 I will port to macOS once I get time
