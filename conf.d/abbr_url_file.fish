@@ -8,7 +8,7 @@ type -q pdflatex-quiet && set PDFCMD pdflatex-quiet || set PDFCMD pdflatex
 #       avdl.sh (https://github.com/he2a/av-dl, downoad the script and rename it as `avdl.sh')
 #       axs (pipx install git+https://github.com/cshen/arxiv_download)
 # Optional:
-#       win32yank.exe (for WSL), bat, pdflatex/bibtex (texlive) 
+#       win32yank.exe (for WSL), pdflatex/bibtex (texlive) 
 
 
 #-------------------------------------------------
@@ -22,7 +22,11 @@ function _vim_edit
 end
 
 function _cat_file
-    echo 'bat ' $argv
+    if type -q bat 
+        echo 'bat ' $argv
+    else
+        echo 'cat ' $argv
+    end
 end
 
 function _img_file
