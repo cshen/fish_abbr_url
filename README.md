@@ -1,6 +1,6 @@
 # fish_abbr_url
 
-Fish shell plugin to handle terminal input:
+[Fish shell](https://fishshell.com/) plugin to handle terminal input:
     ``https://... or file``, e.g.,
 
 type ``final.tex``  it will expand into:
@@ -28,7 +28,8 @@ fundle init
 ```sh
     set -Ua fish_features qmark-noglob
 ```
-See https://fishshell.com/docs/3.4/language.html#featureflags for details
+See https://fishshell.com/docs/3.4/language.html#featureflags for details.
+
 Run ``status features`` to check the flags, you must have 
 ```
 qmark-noglob            on  3.0 ? no longer globs
