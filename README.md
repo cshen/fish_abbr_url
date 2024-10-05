@@ -17,18 +17,18 @@ I will port to macOS once I get time
 ## Install
 1. Using [fundle](https://github.com/danhper/fundle):
 
-Add this to your ``~/.config/fish/config.fish'
- or any file that you use to load fundle's plugins (in ``/etc/fish' for example):
+Add this to your ``~/.config/fish/config.fish''
+ or any file that you use to load fundle's plugins (in ``/etc/fish'' for example):
 ```sh
 fundle plugin 'cshen/fish_abbr_url'
 fundle init
 ``` 
 
-2. Reload the shell and Run `fundle install'
+2. Reload the shell and Run ``fundle install''
 
-3. Add this line into your `config.fish': 
+3. Add this line into your ``config.fish'': 
 ```sh
-    set -Ua fish_features qmark-noglob'
+    set -Ua fish_features qmark-noglob
 ```
 See https://fishshell.com/docs/3.4/language.html#featureflags for details
 
