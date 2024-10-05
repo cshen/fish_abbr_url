@@ -29,7 +29,11 @@ fundle init
     set -Ua fish_features qmark-noglob
 ```
 See https://fishshell.com/docs/3.4/language.html#featureflags for details
-
+Run ``status features`` to check the flags, you must have 
+```
+qmark-noglob            on  3.0 ? no longer globs
+```
+Otherwise it won't work. Restart fish and check again.
 
 ## Requirements
 
