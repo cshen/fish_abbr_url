@@ -24,17 +24,21 @@ fundle init
 
 2. Reload the shell and Run ``fundle install``
 
-3. Add this line into your ``config.fish``: 
-```sh
-    set -Ua fish_features qmark-noglob
-```
-See https://fishshell.com/docs/3.4/language.html#featureflags for details.
 
-Run ``status features`` to check the flags, you must have 
+
+3. Run ``status features`` to check the flags, you must have 
 ```
 qmark-noglob            on  3.0 ? no longer globs
 ```
-Otherwise it won't work. Restart fish and check again.
+See https://fishshell.com/docs/3.4/language.html#featureflags for details.
+
+Or,  add this line into your ``config.fish``: 
+```sh
+    set -Ua fish_features qmark-noglob
+```
+
+Restart fish and check again.
+
 
 ## Requirements
 
