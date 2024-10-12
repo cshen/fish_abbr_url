@@ -71,10 +71,11 @@ function _compile_latex
     set -l last_char $( echo $argv | string trim | string sub -s -1 )
     if [ $first_char = "\"" -a $last_char = "\"" ]
         set myargv (echo $argv | string sub -s 2 -e -1 )
+    else if [ $first_char = "\'" -a $last_char = "\'" ]
+        set myargv (echo $argv | string sub -s 2 -e -1 )
     else
         set myargv $argv
     end
-
     
     __is_WSL && set -l F $( wslpath -a -u $myargv ) || \
     set -l F "$myargv"
@@ -95,7 +96,7 @@ function _compile_latex
     echo ""
 end
 # abbr -a compile_latex --position command --regex ".+\.(tex|TEX)" --function _compile_latex
-abbr -a compile_latex --position command --regex ".+\.(tex|TEX)\"?" --function _compile_latex
+abbr -a compile_latex --position command --regex ".+\.(tex|TEX)\"?\'?" --function _compile_latex
 
 
 function mypdflatex
