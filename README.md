@@ -8,7 +8,10 @@ type ``final.tex``  it will expand into:
 
 type an arxiv or youtube URL link, it will expand into commands to download the arxiv paper/video
 
-Note: *Tested on WSL with Ubuntu; fish, version 3.7.1*, and macOS with homebrew. 
+Note: *Tested on WSL with Ubuntu; fish, version 3.7.1*, and macOS with homebrew (kitty, and iTerm2). 
+
+for macOS, iTerm2, turn on "advanced experimental feature: Escape file names with single quotes instead of backslashes"
+
 
 ## Install
 1. Using [fundle](https://github.com/danhper/fundle):
