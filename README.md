@@ -8,9 +8,7 @@ type ``final.tex``  it will expand into:
 
 type an arxiv or youtube URL link, it will expand into commands to download the arxiv paper/video
 
-
-Note: *Only tested on WSL with Ubuntu; fish, version 3.7.1*
-I will port to macOS once I get time
+Note: *Tested on WSL with Ubuntu; fish, version 3.7.1*, and macOS with homebrew. 
 
 ## Install
 1. Using [fundle](https://github.com/danhper/fundle):
@@ -50,6 +48,10 @@ Restart fish and check again.
 
 ```sh
     pipx install git+https://github.com/cshen/arxiv_download
+```
+NOTE: Oct 2024, On macOS, pipx installing with python3.13 results in missing packages. With Python 3.12, it works
+```sh
+pipx install --python python3.12 git+https://github.com/cshen/arxiv_download
 ```
 
 ## Optional:
