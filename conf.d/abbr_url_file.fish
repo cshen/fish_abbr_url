@@ -85,7 +85,7 @@ function _compile_latex
     set -l AUXFILE $( basename "$TEXFILE" .tex ).aux
 
     echo -n "# Changing dir from: $(pwd) --> "
-    builtin cd "$MDIR"
+    builtin cd $MDIR
     echo "$(pwd)"
 
     # echo "# Current dir: " $(pwd)
@@ -112,7 +112,7 @@ function mypdflatex
     set PDFCMD pdflatex
     type -q pdflatex-quiet && set PDFCMD pdflatex-quiet 
 
-    builtin cd "$MDIR"
+    builtin cd $MDIR
     pwd
     for i in 1 2
         $PDFCMD $TEXFILE
