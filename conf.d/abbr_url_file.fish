@@ -1,6 +1,6 @@
 
 # it's WSL
-uname --all | grep -q WSL && set OPEN_CMD explorer.exe
+uname -a | grep -q WSL && set OPEN_CMD explorer.exe
 
 
 # requirements:
