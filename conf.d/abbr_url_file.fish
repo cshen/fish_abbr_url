@@ -2,10 +2,16 @@
 # See https://fishshell.com/docs/3.4/language.html#featureflags for details.
 set -Ua fish_features qmark-noglob
 
+function __is_WSL
+    return (uname -a | grep -q WSL)
+end
+
+function __is_mac
+    return (test $(uname) = 'Darwin')
+end
 
 # it's WSL
-uname -a | grep -q WSL && set OPEN_CMD explorer.exe
-
+__is_WSL && set OPEN_CMD explorer.exe
 
 # requirements:
 #       gum (https://github.com/charmbracelet/gum)
@@ -69,7 +75,10 @@ function _compile_latex
         set myargv $argv
     end
 
-    set -l F $( wslpath -a -u $myargv )
+    
+    __is_WSL && set -l F $( wslpath -a -u $myargv ) || \
+    set -l F "$myargv"
+    
     set -l MDIR $(path dirname $F  )
     set -l TEXFILE $(path basename  $F  )
     set -l AUXFILE $( basename "$TEXFILE" .tex ).aux
@@ -90,7 +99,10 @@ abbr -a compile_latex --position command --regex ".+\.(tex|TEX)\"?" --function _
 
 
 function mypdflatex
-    set -l F $( wslpath -a -u "$argv" )
+
+    set -l F "$argv"
+    __is_WSL && set -l F $( wslpath -a -u "$argv" )
+    
     set -l MDIR $(path dirname "$F"  )
     set -l TEXFILE $(path basename  "$F"  )
     set -l AUXFILE $( basename "$TEXFILE" .tex ).aux
