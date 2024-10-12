@@ -1,4 +1,8 @@
 
+# See https://fishshell.com/docs/3.4/language.html#featureflags for details.
+set -Ua fish_features qmark-noglob
+
+
 # it's WSL
 uname -a | grep -q WSL && set OPEN_CMD explorer.exe
 
