@@ -38,14 +38,14 @@ function img_to_jpg
     if test -z $argv[1]
         echo "Usage: an input file or directory needed"
         # Get the current directory
-        exit 1
+         return 1
 
     else
         # Get the directory argument
 
         if test -f $argv[1]
             _img_to_jpeg $argv[1]
-            exit 0
+            return 0
         end
 
         set directory $argv[1]
@@ -53,7 +53,7 @@ function img_to_jpg
         # Check if the directory exists
         if not test -d "$directory"
             echo "Error: Directory or file $directory does not exist."
-            exit 1
+             return 1
         else
 
             for f in ( find . -type f | grep -e \.png -e \.heic 2> /dev/null )

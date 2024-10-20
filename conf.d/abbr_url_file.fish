@@ -47,7 +47,7 @@ function _img_file
     end
 
     if string match -q "2*" $act
-        echo img_to_jpg.fish "$argv"
+        echo img_to_jpg  "$argv"
         return 0
     end
 
