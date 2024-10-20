@@ -58,7 +58,7 @@ abbr -a vim_edit_texts --position command --regex ".+\.(txt|conf|config)" --func
 abbr -a vim_edit_texts --position command --regex "config.*" --function _vim_edit
 
 abbr -a cat_texts --position command --regex ".+\.(md|MD|jemdoc|config|vim)" --function _cat_file
-abbr -a img_file --position command --regex ".+\.(png|PNG|HEIC|heic)" --function _img_file
+abbr -a img_file --position command --regex ".+\.(png|PNG|HEIC|heic)\"?\'?" --function _img_file
 
 function _compile_latex
     #
