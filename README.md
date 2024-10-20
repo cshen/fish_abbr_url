@@ -49,6 +49,8 @@ Restart fish and check again.
        
 [axs](https://github.com/cshen/arxiv_download) 
 
+## You will need to source the helper.fish file in ``tools`` in your config.fish file
+
 ```sh
     pipx install git+https://github.com/cshen/arxiv_download
 ```
