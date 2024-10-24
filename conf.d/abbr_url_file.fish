@@ -159,15 +159,22 @@ abbr -a open_file --position command --regex ".+\.(pdf|PDF)\"?" --function _open
 function _youtube_download
     echo avdl.sh $argv
 end
-abbr -a youtube_download --position command --regex "https:\/\/www\.youtube.*" --function _youtube_download
-abbr -a xiaohongshu_download --position command --regex "https:\/\/www\.xiaohongshu.*" --function _youtube_download
-
+# abbr -a youtube_download --position command --regex "https:\/\/www\.youtube.*" --function _youtube_download
+# abbr -a xiaohongshu_download --position command --regex "https:\/\/www\.xiaohongshu.*" --function _youtube_download
+#
+# CS: 24 Oct 2024 14:43, URL may start with " or ' in the terminal
+abbr -a youtube_download --position command --regex "\"?\'?https:\/\/www\.youtube.*" --function _youtube_download
+abbr -a xiaohongshu_download --position command --regex "\"?\'?https:\/\/www\.xiaohongshu.*" --function _youtube_download
 
 function _arxiv_download
     # extract arxiv id
     # https://arxiv.org/pdf/2410.00890
     # https://arxiv.org/abs/2410.00890
     set -l ID $( echo $argv | rev | awk -F/ '{print $1}' | rev )
+
+    # When the URL is quoted with " or ', the above will have " or ' at the tail, remove it
+    set -l ID $( echo $ID | sed 's/"//g' | sed 's/\'//g' )  
+    
     mkdir -p $HOME/Downloads/_arXiv
 
     # using axs to download. Install:  pipx install git+https://github.com/cshen/arxiv_download   
@@ -176,5 +183,5 @@ function _arxiv_download
     # ls -l --color -t $HOME/Downloads/_arXiv
     # type -d detox && detox $HOME/Downloads/_arXiv/*
 end
-abbr -a arxiv_download --position command --regex "https:\/\/arxiv.*" --function _arxiv_download
+abbr -a arxiv_download --position command --regex "\"?\'?https:\/\/arxiv.*" --function _arxiv_download
 #-------------------------------------------------
