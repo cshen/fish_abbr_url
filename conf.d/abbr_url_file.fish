@@ -160,6 +160,8 @@ function _youtube_download
     echo avdl.sh $argv
 end
 abbr -a youtube_download --position command --regex "https:\/\/www\.youtube.*" --function _youtube_download
+abbr -a xiaohongshu_download --position command --regex "https:\/\/www\.xiaohongshu.*" --function _youtube_download
+
 
 function _arxiv_download
     # extract arxiv id
