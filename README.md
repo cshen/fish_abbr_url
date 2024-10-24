@@ -10,6 +10,9 @@ type an arxiv or youtube URL link, it will expand into commands to download the 
 
 Note: *Tested on WSL with Ubuntu; fish, version 3.7.1*, and macOS with homebrew (kitty, and iTerm2). 
 
+- docx2pdf only works on macOS,  CS: 24 Oct 2024 17:22 
+
+
 for macOS, iTerm2, turn on "advanced experimental feature: Escape file names with single quotes instead of backslashes"
 
 
