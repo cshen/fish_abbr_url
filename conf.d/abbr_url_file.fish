@@ -99,6 +99,42 @@ end
 abbr -a compile_latex --position command --regex ".+\.(tex|TEX)\"?\'?" --function _compile_latex
 
 
+function _docx2pdf
+    
+    set -l DOCX_CMD open
+    type -q docx2pdf && set DOCX_CMD  docx2pdf 
+
+    
+    set -l first_char $( echo $argv | string trim | string sub -s 1 -e 1 )
+    set -l last_char $( echo $argv | string trim | string sub -s -1 )
+    if [ $first_char = "\"" -a $last_char = "\"" ]
+        set myargv (echo $argv | string sub -s 2 -e -1 )
+    else if [ $first_char = "'" -a $last_char = "'" ]
+        set myargv (echo $argv | string sub -s 2 -e -1 )
+    else
+        set myargv $argv
+    end
+    
+    __is_WSL && set -l F $( wslpath -a -u $myargv ) || \
+    set -l F "$myargv"
+    
+    set -l MDIR $(path dirname $F  )
+    set -l DOCXFILE $(path basename  $F  )
+    # set -l AUXFILE $( basename "$TEXFILE" .docx ).pdf
+
+    echo -n "# Changing dir from: $(pwd) --> "
+    builtin cd $MDIR
+    echo "$(pwd)"
+
+    # echo "# Current dir: " $(pwd)
+   
+    echo "    $DOCX_CMD $DOCXFILE"
+
+end
+abbr -a docx_to_pdf --position command --regex ".+\.(docx|DOCX)\"?\'?" --function _docx2pdf
+
+
+# The following function is not used for now
 function mypdflatex
 
     set -l F "$argv"
