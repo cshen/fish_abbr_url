@@ -12,13 +12,17 @@ end
 
 # it's WSL
 __is_WSL && set OPEN_CMD explorer.exe
+__is_mac && set OPEN_CMD open
 
 # requirements:
 #       gum (https://github.com/charmbracelet/gum)
 #       avdl.sh (https://github.com/he2a/av-dl, downoad the script and rename it as `avdl.sh')
+#                Recommend to use the avdl.sh provided in the `tool' directory, which is heavily modified for the purpose of this script
 #       axs (pipx install git+https://github.com/cshen/arxiv_download)
+#
 # Optional:
 #       win32yank.exe (for WSL), pdflatex/bibtex (texlive) 
+#       docx2pdf, (pipx install docx2pdf), otherwise the script falls back to open the word doc only
 
 
 #-------------------------------------------------
@@ -101,7 +105,7 @@ abbr -a compile_latex --position command --regex ".+\.(tex|TEX)\"?\'?" --functio
 
 function _docx2pdf
     
-    set -l DOCX_CMD open
+    set -l DOCX_CMD $OPEN_CMD
     type -q docx2pdf && set DOCX_CMD  docx2pdf 
 
     
