@@ -62,7 +62,8 @@ function string_remove_quote --argument input
     if isatty stdin
         set s "$input"
     else
-        set s (cat) # pipe input
+        read s  
+        # pipe input
     end
 
     # Cannot pipe results into __remove_first 
