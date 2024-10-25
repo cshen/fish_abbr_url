@@ -67,7 +67,8 @@ abbr -a img_file --position command --regex ".+\.(png|PNG|HEIC|heic)\"?\'?" --fu
 function _compile_latex
     #
     # For input like "xxxx", we need to remove the double quotes
-    #
+    # CS: 25 Oct 2024 16:10 in fish, string unescape can do the following which is much simpler
+    # I will clean up the code once I have time. For now the poor man's solution just works
     set PDFCMD pdflatex
     type -q pdflatex-quiet && set PDFCMD pdflatex-quiet 
 
