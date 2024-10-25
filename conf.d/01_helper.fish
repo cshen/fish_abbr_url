@@ -64,9 +64,9 @@ function string_remove_quote --argument input
     else
         read s # pipe input
     end
-   
+
     # Cannot pipe results into __remove_first 
-    __remove_first ( __remove_first $s | rev ) |  rev 
+    __remove_first ( __remove_first $s | rev ) | rev
 end
 
 

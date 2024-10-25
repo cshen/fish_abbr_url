@@ -226,3 +226,40 @@ function _arxiv_download
 end
 abbr -a arxiv_download --position command --regex "\"?\'?https:\/\/arxiv.*" --function _arxiv_download
 #-------------------------------------------------
+
+
+function _extract_compression 
+    set -l EXT_CMD $OPEN_CMD
+    type -q dtrx && set EXT_CMD  "dtrx -v --one inside"
+
+    set -l first_char $( echo $argv | string trim | string sub -s 1 -e 1 )
+    set -l last_char $( echo $argv | string trim | string sub -s -1 )
+    if [ $first_char = "\"" -a $last_char = "\"" ]
+        set myargv (echo $argv | string sub -s 2 -e -1 )
+    else if [ $first_char = "'" -a $last_char = "'" ]
+        set myargv (echo $argv | string sub -s 2 -e -1 )
+    else
+        set myargv $argv
+    end
+    
+    __is_WSL && set -l F $( wslpath -a -u $myargv ) || \
+    set -l F "$myargv"
+    
+    set -l MDIR $(path dirname $F  )
+    set -l MYFILE $(path basename  $F  )
+
+    echo -n "# Changing dir from: $(pwd) --> "
+    builtin cd $MDIR
+    echo "$(pwd)"
+
+    # echo "# Current dir: " $(pwd)
+   
+    echo "    $EXT_CMD  $MYFILE"
+
+end 
+abbr -a extract_me --position command --regex ".+\.(7z|Z|bz2|cpio|gz|jar|lzma|rar|tar|taz|tb2|tbz|tbz2|tgz|txz|xz|zip|zst|zstd)\"?\'?" --function _extract_compression
+
+# supported extensions
+# 
+# 7z, Z, arj, br, bz2, cab, cpio, crx, gz, jar, lha, lrz, lz, lzh, lzma, rar, tar, taz, tb2, tbz, tbz2, tgz, tlz, txz, xz, zip, zst, zstd
+#
