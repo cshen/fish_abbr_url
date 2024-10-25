@@ -55,20 +55,18 @@ end
 # "xxxx" ---> xxxx
 # 'xxxx' ---> xxxx
 # "xxxx' ---> xxxx
-# https://stackoverflow.com/questions/66285878/in-fish-shell-why-cant-one-functions-output-pipe-to-another CS: 25 Oct 2024 12:00 
+# https://stackoverflow.com/questions/66285878/in-fish-shell-why-cant-one-functions-output-pipe-to-another CS: 25 Oct 2024 12:00
+# https://github.com/fish-shell/fish-shell/issues/206 
 function string_remove_quote --argument input
-    
-      if isatty stdin
-            set s "$input"
-        else
-            read s   # pipe input
-        end
- 
-    set  _a ( __remove_first $s )
-    set  _b ( echo $_a | rev | __remove_first | rev )
 
+    if isatty stdin
+        set s "$input"
+    else
+        read s # pipe input
+    end
+    set _a ( __remove_first $s )
+    set _b ( echo $_a | rev | __remove_first | rev )
     echo $_b
-
 end
 
 
@@ -129,11 +127,11 @@ end
 
 function set_val_or_default --argument val default
 
-        if not is_string_empty $val
-            echo $val
-        else
-            echo $default
-        end
+    if not is_string_empty $val
+        echo $val
+    else
+        echo $default
+    end
 end
 
 #---- Private functions --------------------
@@ -151,22 +149,24 @@ function __os
     end
 end
 
-  function __remove_first --argument input
-        # first char
-        
-        if isatty stdin
-            set s "$input"
-        else
-            read s   # pipe input
-        end
+function __remove_first --argument input
+    # first char
 
-        set first $( echo $s | string trim | string sub -s 1 -e 1 )
-        
-        if test $first = "\""  
-            or test $first = "'"  
-            echo $s | cut -c2- 
-        else
-            echo $s 
-        end
-        return 0
+    if isatty stdin
+        set s "$input"
+    else
+        read s # pipe input
     end
+
+    set first $( echo $s | string trim | string sub -s 1 -e 1 )
+
+    if test $first = "\""
+        or test $first = "'"
+        echo $s | cut -c2-
+    else
+        echo $s
+    end
+    return 0
+end
+
+# vim: ft=fish CS: 25 Oct 2024 13:44 
