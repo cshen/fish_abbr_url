@@ -64,9 +64,9 @@ function string_remove_quote --argument input
     else
         read s # pipe input
     end
-    set _a ( __remove_first $s )
-    set _b ( echo $_a | rev | __remove_first | rev )
-    echo $_b
+   
+    # Cannot pipe results into __remove_first 
+    __remove_first ( __remove_first $s | rev ) |  rev 
 end
 
 
@@ -152,11 +152,7 @@ end
 function __remove_first --argument input
     # first char
 
-    if isatty stdin
-        set s "$input"
-    else
-        read s # pipe input
-    end
+    set s "$input"
 
     set first $( echo $s | string trim | string sub -s 1 -e 1 )
 
@@ -169,4 +165,5 @@ function __remove_first --argument input
     return 0
 end
 
-# vim: ft=fish CS: 25 Oct 2024 13:44 
+# vim: ft=fish 
+# CS: 25 Oct 2024 13:44 
