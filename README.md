@@ -1,5 +1,5 @@
 
-**This repo is not maintained anymore. Please check [fish_url](https://github.com/cshen/fish_url) instead**
+# This repo is not maintained anymore. Please check [fish_url](https://github.com/cshen/fish_url) instead
 
 
 [Fish shell](https://fishshell.com/) plugin to handle terminal input:
