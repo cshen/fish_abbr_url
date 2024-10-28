@@ -1,4 +1,3 @@
-![image](https://github.com/user-attachments/assets/890728e6-c6d8-49a1-aeca-261722dcd2b7)# fish_abbr_url
 
 ** This repo is not maintained anymore. Please check [fish_url](https://github.com/cshen/fish_url) instead. **
 
